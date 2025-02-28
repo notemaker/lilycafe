@@ -2,6 +2,7 @@ var script_url = "https://script.google.com/macros/s/AKfycby-bWjnrG0PRdCoYNV_bwH
 $(document).ready(function ($) {
     $("#google-sheet").submit(function (event) {
         $('#date, #time, #name, #phone').prop("disabled", false);
+        var title= $("#restitle").val();
         var date = $("#date").val();
         var time = $("#time").val();
         var name = $("#name").val();
@@ -15,8 +16,15 @@ $(document).ready(function ($) {
             window.location.reload();
         });
         request.always(function () {
-            $('#date, #time, #name, #phone').prop("disabled", true);
+           $('#date, #time, #name, #phone').prop("disabled", true);
         });
         event.preventDefault();
+
+        // 隱藏表單
+        $('#restitle').hide(); //隱藏Title
+        $('#google-sheet').hide();
+
+        // 顯示感謝訊息
+        $('#thank-you-message').show();
     })
 })
